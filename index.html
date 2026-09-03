@@ -195,6 +195,19 @@
   /* ---- charts ---- */
   .chart-box{position:relative;width:100%;height:340px;margin-top:4px}
   .chart-box.short{height:270px}
+  .chart-key{list-style:none;display:grid;gap:7px;margin:18px 0 0}
+  .chart-key li{
+    display:grid;grid-template-columns:20px 1fr;gap:8px;
+    font-size:13.5px;align-items:baseline;
+  }
+  .chart-key em{font-style:normal;color:var(--ink-faint);font-family:'IBM Plex Mono',monospace;font-size:11.5px;display:block}
+  .k-n{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
+    text-align:center;
+  }
+  .k-n.g{color:var(--green)}
+  .k-n.a{color:var(--amber)}
+  .k-n.r{color:var(--red)}
   .chart-cap{
     font-size:12.5px;color:var(--ink-faint);margin-top:14px;
     font-family:'IBM Plex Mono',monospace;
@@ -489,6 +502,16 @@
     <div class="chart-box">
       <canvas id="tradeChart" role="img" aria-label="Dağılım grafiği: Almanya harçsız rota hem en yüksek şans hem yaklaşık 24 bin sterlin değerle sağ üstte; Surrey 5 bin sterlin ile makul şansta; GOI-IES ve Twente yüksek değerli ama çok düşük şansta sol üstte."></canvas>
     </div>
+    <ol class="chart-key" id="tradeKey" hidden>
+      <li><span class="k-n g">1</span> Almanya (harçsız) <em>£24k · rekabet yok</em></li>
+      <li><span class="k-n g">2</span> Surrey Excellence <em>£5k · makul</em></li>
+      <li><span class="k-n a">3</span> Deutschlandstipendium <em>£3,1k · orta</em></li>
+      <li><span class="k-n a">4</span> NL Scholarship <em>£4,3k · makul</em></li>
+      <li><span class="k-n a">5</span> GREAT Türkiye <em>£12,5k · orta-zayıf</em></li>
+      <li><span class="k-n r">6</span> DAAD <em>£10,1k · zayıf</em></li>
+      <li><span class="k-n r">7</span> Twente / TU Delft <em>£12,8k · zayıf</em></li>
+      <li><span class="k-n r">8</span> GOI-IES <em>£25,5k · çok zayıf</em></li>
+    </ol>
     <p class="chart-cap">Değerler karşılaştırma için £'ye çevrilmiştir (€1 ≈ £0,85).</p>
     <p class="verdict">Grafikte sağ üstte tek bir nokta var ve o bir burs değil: Almanya. Emeğin çoğu buraya, kalanı Surrey'e gitmeli.</p>
   </section>
@@ -619,6 +642,8 @@
   var mono = "'IBM Plex Mono', monospace";
   var sans = "'Inter', sans-serif";
 
+  var colorOf = function(c){ return c === 'green' ? theme.green : (c === 'amber' ? theme.amber : theme.red); };
+
   var routes = [
     { n:'Almanya (harçsız)',   x:5, y:24.0, c:'green', side:'left'  },
     { n:'Surrey Excellence',   x:4, y:5.0,  c:'green', side:'left'  },
@@ -630,36 +655,41 @@
     { n:'GOI-IES',             x:1, y:25.5, c:'red',   side:'right' }
   ];
 
-  // Draws each route's name next to its point. Picks the side with room and
-  // clamps to the canvas so nothing gets cut off at narrow widths.
+  // Labels each point with the route name. Full names need horizontal room, so
+  // below ~500px the plugin falls back to numbers and reveals the key list
+  // underneath the chart instead.
+  var COMPACT_AT = 500;
   var labelPlugin = {
     id: 'pointLabels',
     afterDatasetsDraw: function(chart){
       var ctx = chart.ctx;
       var meta = chart.getDatasetMeta(0);
       var w = chart.width;
-      var fs = w < 430 ? 10 : 11;
-      var gap = 9;
+      var compact = w < COMPACT_AT;
+      var key = document.getElementById('tradeKey');
+      if (key) key.hidden = !compact;
+
+      var fs = compact ? 11 : 11;
+      var gap = compact ? 7 : 9;
       ctx.save();
-      ctx.font = fs + 'px ' + mono;
-      ctx.fillStyle = theme.soft;
+      ctx.font = (compact ? '500 ' : '') + fs + 'px ' + mono;
       ctx.textBaseline = 'middle';
       ctx.textAlign = 'left';
       meta.data.forEach(function(pt, i){
         var r = routes[i];
-        var tw = ctx.measureText(r.n).width;
+        var txt = compact ? String(i + 1) : r.n;
+        ctx.fillStyle = compact ? colorOf(r.c) : theme.soft;
+        var tw = ctx.measureText(txt).width;
         var x = r.side === 'left' ? pt.x - gap - tw : pt.x + gap;
         // flip to the other side if the preferred one runs off the canvas
         if (x + tw > w - 2) x = pt.x - gap - tw;
         if (x < 2) x = pt.x + gap;
         x = Math.max(2, Math.min(x, w - tw - 2));
-        ctx.fillText(r.n, x, pt.y + (r.dy || 0));
+        ctx.fillText(txt, x, pt.y + (r.dy || 0));
       });
       ctx.restore();
     }
   };
-
-  var colorOf = function(c){ return c === 'green' ? theme.green : (c === 'amber' ? theme.amber : theme.red); };
 
   new Chart(document.getElementById('tradeChart'), {
     type: 'scatter',
