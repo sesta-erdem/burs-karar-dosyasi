@@ -752,7 +752,7 @@
     }
   };
 
-  new Chart(document.getElementById('tradeChart'), {
+  var tradeChart = new Chart(document.getElementById('tradeChart'), {
     type: 'scatter',
     data: {
       datasets: [{
@@ -818,7 +818,7 @@
     plugins: [labelPlugin]
   });
 
-  new Chart(document.getElementById('costChart'), {
+  var costChart = new Chart(document.getElementById('costChart'), {
     type: 'bar',
     data: {
       labels: [['İngiltere','(bursuz)'], ['İngiltere','(kısmi burs)'], ['Hollanda',''], ['Almanya','(harçsız)']],
@@ -862,6 +862,16 @@
       }
     }
   });
+
+  // The first paint can happen before IBM Plex Mono arrives, and fallback
+  // metrics are wider - enough to make the label solver give up and fall back
+  // to numbers. Chart.js does not redraw on font load, so ask it to.
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function(){
+      tradeChart.update('none');
+      costChart.update('none');
+    });
+  }
 })();
 </script>
 </body>
