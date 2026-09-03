@@ -196,6 +196,8 @@
   .chart-box{position:relative;width:100%;height:340px;margin-top:4px}
   .chart-box.short{height:270px}
   .chart-key{list-style:none;display:grid;gap:7px;margin:18px 0 0}
+  /* display on the class would otherwise beat the hidden attribute */
+  .chart-key[hidden]{display:none}
   .chart-key li{
     display:grid;grid-template-columns:20px 1fr;gap:10px;
     font-size:14px;align-items:baseline;
