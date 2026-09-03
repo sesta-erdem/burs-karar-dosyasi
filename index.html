@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Burs Karar Dosyası — Yurt Dışı Yüksek Lisans</title>
-<meta name="description" content="Yurt dışı yüksek lisans bursları için gerçekçi şans, kapsam ve maliyet karşılaştırması.">
+<meta name="description" content="Yurt dışı yüksek lisans bursları: kabul şartları, gerçekçi şans, kapsam ve maliyet karşılaştırması. Resmi kaynaklardan doğrulanmış.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -59,6 +59,7 @@
     padding-bottom:80px;
   }
   .wrap{max-width:840px;margin:0 auto;padding:0 24px}
+  a{color:inherit}
 
   /* ---- nav ---- */
   nav{
@@ -84,7 +85,7 @@
     padding:2px 0;border-bottom:1px solid transparent;
   }
   .nav-links a:hover{color:var(--ink);border-bottom-color:var(--ink)}
-  @media(max-width:640px){.nav-links{display:none}}
+  @media(max-width:820px){.nav-links{display:none}}
 
   /* ---- header ---- */
   header{padding:64px 0 36px}
@@ -99,6 +100,7 @@
   }
   .lede{font-size:17.5px;color:var(--ink-soft);max-width:34em}
   .lede strong{color:var(--ink);font-weight:500}
+  .lede + .lede{margin-top:14px}
 
   /* ---- stat strip ---- */
   .stats{
@@ -127,6 +129,15 @@
     font-family:'Newsreader',Georgia,serif;font-weight:500;
     font-size:27px;line-height:1.25;margin:6px 0 8px;letter-spacing:-0.005em;
   }
+  h3.block{
+    font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:19px;
+    margin:34px 0 4px;
+  }
+  h3.block:first-of-type{margin-top:8px}
+  .block-sub{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-faint);
+    letter-spacing:0.04em;margin-bottom:12px;
+  }
   .section-note{font-size:14.5px;color:var(--ink-soft);max-width:36em;margin-bottom:28px}
 
   .verdict{
@@ -151,6 +162,10 @@
   .m-do{background:var(--amber-bg);color:var(--amber)}
   .take p{font-size:15px}
   .take b{font-weight:600}
+  @media(max-width:520px){
+    .take{grid-template-columns:1fr;gap:10px}
+    .take-mark{justify-self:start}
+  }
 
   /* ---- routes ---- */
   .routes{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
@@ -174,11 +189,11 @@
     font-family:'IBM Plex Mono',monospace;font-size:11px;
     letter-spacing:0.03em;text-transform:uppercase;
   }
-  .g .score-label,.score-label.g{color:var(--green)}
-  .a .score-label,.score-label.a{color:var(--amber)}
-  .r .score-label,.score-label.r{color:var(--red)}
+  .g .score-label{color:var(--green)}
+  .a .score-label{color:var(--amber)}
+  .r .score-label{color:var(--red)}
   .route-facts{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
     gap:12px 22px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line-soft);
   }
   .route-facts dt{
@@ -187,14 +202,20 @@
   }
   .route-facts dd{font-size:14px;color:var(--ink-soft);margin-top:3px}
   .route-facts dd strong{color:var(--ink);font-weight:500}
+  .src{
+    display:inline-block;margin-top:14px;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;color:var(--ink-faint);text-decoration:none;
+    border-bottom:1px solid var(--line);
+  }
+  .src:hover{color:var(--ink);border-bottom-color:var(--ink)}
   @media(max-width:560px){
     .route-head{flex-direction:column}
     .route-score{align-items:flex-start}
   }
 
   /* ---- charts ---- */
-  .chart-box{position:relative;width:100%;height:340px;margin-top:4px}
-  .chart-box.short{height:270px}
+  .chart-box{position:relative;width:100%;height:360px;margin-top:4px}
+  .chart-box.short{height:280px}
   .chart-key{list-style:none;display:grid;gap:7px;margin:18px 0 0}
   /* display on the class would otherwise beat the hidden attribute */
   .chart-key[hidden]{display:none}
@@ -215,7 +236,32 @@
   .k-n.r{color:var(--red)}
   .chart-cap{
     font-size:12.5px;color:var(--ink-faint);margin-top:14px;
-    font-family:'IBM Plex Mono',monospace;
+    font-family:'IBM Plex Mono',monospace;line-height:1.6;
+  }
+
+  /* ---- requirement tables ---- */
+  .req{
+    display:grid;grid-template-columns:150px 1fr;
+    border:1px solid var(--line);background:var(--surface);
+  }
+  .req dt{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+    letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-faint);
+    padding:13px 16px;border-bottom:1px solid var(--line-soft);
+  }
+  .req dd{
+    font-size:14.5px;color:var(--ink-soft);
+    padding:13px 16px 13px 0;border-bottom:1px solid var(--line-soft);
+  }
+  .req dt:last-of-type,.req dd:last-of-type{border-bottom:none}
+  .req dd strong{color:var(--ink);font-weight:600}
+  .req dd.you{color:var(--ink)}
+  .req dd .ok{color:var(--green);font-weight:600}
+  .req dd .no{color:var(--red);font-weight:600}
+  @media(max-width:600px){
+    .req{grid-template-columns:1fr}
+    .req dt{padding-bottom:0;border-bottom:none}
+    .req dd{padding:4px 16px 14px}
   }
 
   /* ---- timeline ---- */
@@ -226,7 +272,7 @@
   }
   .tl-head:first-of-type{margin-top:0}
   .t-row{
-    display:grid;grid-template-columns:104px 18px 1fr;
+    display:grid;grid-template-columns:118px 18px 1fr;
     align-items:start;padding:13px 0;border-bottom:1px solid var(--line-soft);
   }
   .t-date{
@@ -241,11 +287,11 @@
   .t-row.up .t-dot{background:var(--green);border-color:var(--green)}
   .t-row.up .t-label{font-weight:500}
   .t-row.past{opacity:0.6}
-  @media(max-width:520px){.t-row{grid-template-columns:82px 16px 1fr}}
+  @media(max-width:520px){.t-row{grid-template-columns:92px 16px 1fr}}
 
   /* ---- table ---- */
   .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  table{width:100%;border-collapse:collapse;font-size:14px;min-width:620px}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:700px}
   th{
     text-align:left;font-family:'IBM Plex Mono',monospace;font-weight:400;
     font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;
@@ -277,6 +323,23 @@
     color:var(--ink-faint);margin-top:6px;
   }
 
+  /* ---- sources ---- */
+  .sources{list-style:none;display:grid;gap:0}
+  .sources li{
+    padding:12px 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:1fr;gap:2px;
+  }
+  .sources li:last-child{border-bottom:none}
+  .sources a{
+    font-size:14.5px;text-decoration:none;border-bottom:1px solid var(--line);
+    justify-self:start;
+  }
+  .sources a:hover{border-bottom-color:var(--ink)}
+  .sources span{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-faint);
+    word-break:break-all;
+  }
+
   footer{
     padding-top:36px;margin-top:52px;border-top:1px solid var(--line);
     font-size:12.5px;color:var(--ink-faint);
@@ -291,12 +354,14 @@
     <span class="nav-brand">Burs Karar Dosyası</span>
     <div class="nav-links">
       <a href="#ozet">Özet</a>
-      <a href="#sans">Şans haritası</a>
+      <a href="#sans">Şans</a>
       <a href="#denge">Şans × Kapsam</a>
+      <a href="#sartlar">Kabul şartları</a>
       <a href="#maliyet">Maliyet</a>
-      <a href="#tarih">Son tarihler</a>
+      <a href="#tarih">Tarihler</a>
       <a href="#tablo">Tablo</a>
       <a href="#plan">Plan</a>
+      <a href="#kaynak">Kaynaklar</a>
     </div>
   </div>
 </nav>
@@ -304,25 +369,26 @@
 <div class="wrap">
 
   <header>
-    <div class="kicker">Yurt dışı yüksek lisans · karar dosyası</div>
-    <h1>Burslu gidebilir misin? Kısa cevap: kısmen.</h1>
-    <p class="lede">Mevcut profil — <strong>GPA ~3.05–3.20</strong>, <strong>B1 İngilizce</strong>, henüz zayıf teknik CV — tam burs için yeterli değil. Ama karar “burs var / yok” değil: rotalar arasındaki maliyet farkı, kazanılabilecek en iyi bursun kendisinden daha büyük.</p>
+    <div class="kicker">Yurt dışı yüksek lisans · karar dosyası · 3 Eylül 2026</div>
+    <h1>Kabulü alırsın. Tam bursu alamazsın.</h1>
+    <p class="lede">Resmi sayfaları okuyunca tablo değişti. <strong>GPA ~3.05–3.20</strong> Surrey'in kabul eşiğini (2.8–3.0) ve TU Delft'in Türkiye eşiğini (3.0/4.0) <strong>zaten geçiyor</strong>. Seni durduran şey akademik ortalama değil.</p>
+    <p class="lede">Seni durduran iki şey var: <strong>B1 İngilizce</strong> — hiçbir programın eşiğini karşılamıyor — ve tam bursların ölçeği: TU Delft fakülte başına 2 burs veriyor, GOI-IES tüm dünyada 60, GREAT 19 ülkeye toplam 153.</p>
 
     <div class="stats">
       <div class="stat">
         <div class="stat-k">En yüksek gerçekçi şans</div>
         <div class="stat-v">Surrey</div>
-        <div class="stat-s">£5.000 · sert GPA barajı yok</div>
+        <div class="stat-s">£5.000 · sert akademik eşik yok</div>
       </div>
       <div class="stat">
         <div class="stat-k">En düşük toplam maliyet</div>
         <div class="stat-v">Almanya</div>
-        <div class="stat-s">£14.000/yıl · burs gerekmiyor</div>
+        <div class="stat-s">£14.000/yıl · harçsız eyalette</div>
       </div>
       <div class="stat">
         <div class="stat-k">Önündeki ilk son tarih</div>
         <div class="stat-v">Eki 2026</div>
-        <div class="stat-s">DAAD Master bursu</div>
+        <div class="stat-s">DAAD 2027 turu</div>
       </div>
     </div>
   </header>
@@ -330,19 +396,23 @@
   <section id="ozet">
     <div class="sec-num">01</div>
     <h2>Karar özeti</h2>
-    <p class="section-note">Uzun okumaya girmeden önce dosyanın üç sonucu.</p>
+    <p class="section-note">Araştırmanın dört sonucu. İlk üçü profilinle ilgili, dördüncüsü kararla.</p>
     <div class="takes">
       <div class="take">
-        <span class="take-mark m-no">GERÇEKÇİ DEĞİL</span>
-        <p><b>Tam burs.</b> DAAD, GOI-IES ve Hollanda excellence bursları üstün akademik profil ya da sınıfın ilk %5–10'u şartı arıyor. Mevcut GPA bu eşiğin altında; başvurmak zararsız ama plan bunun üstüne kurulamaz.</p>
+        <span class="take-mark m-yes">GERÇEKÇİ</span>
+        <p><b>Kabulün kendisi.</b> Surrey UK 2:1 karşılığı için GPA 2.8–3.0/4.0 istiyor, TU Delft Türk lisans diploması için 3.0/4.0. İkisini de karşılıyorsun. Kabul alamayacağın varsayımı yanlıştı.</p>
       </div>
       <div class="take">
-        <span class="take-mark m-yes">GERÇEKÇİ</span>
-        <p><b>Kısmi burs.</b> Surrey Excellence (£5.000) ve NL Scholarship (€5.000) gibi kabul sonrası verilen küçük destekler sert eşik istemiyor. Toplam maliyeti düşürür, çözmez.</p>
+        <span class="take-mark m-no">ASIL ENGEL</span>
+        <p><b>İngilizce.</b> B1 kabaca IELTS 4.0–5.0 bandı. Twente 6.5 (her bölümden 6.0) istiyor ve <b>dil şartı karşılanmadan koşullu kabul bile vermiyor</b>. TU Delft 7.0 (her bölümden 6.5) istiyor. Bu tek eksik, listedeki her kapıyı kapatıyor.</p>
+      </div>
+      <div class="take">
+        <span class="take-mark m-no">GERÇEKÇİ DEĞİL</span>
+        <p><b>Tam burs.</b> Kontenjanlar profilden bağımsız olarak çok küçük: TU Delft van Effen fakülte başına 2 kişi, GOI-IES dünya genelinde 60 kişi, GREAT 19 ülkeye 153 burs. Twente ve TU Delft ayrıca “mezuniyet sınıfının ilk %5–10'u” diyor.</p>
       </div>
       <div class="take">
         <span class="take-mark m-do">ASIL KARAR</span>
-        <p><b>Ülke seçimi, burstan daha belirleyici.</b> İngiltere'de kısmi burs kazanmak yıllık ~£11.000 kazandırıyor; Almanya'yı seçmek ~£24.000. Yani en iyi burs, en iyi rotadan daha az iş görüyor.</p>
+        <p><b>Ülke değil, eyalet.</b> Almanya artık tümüyle harçsız değil: Baden-Württemberg AB dışından yarıyıl başına €1.500, Bayern'de FAU yüksek lisansta €2.000–6.000 alıyor. Doğru eyaleti seçmek, kazanılabilecek her burstan daha çok kazandırıyor.</p>
       </div>
     </div>
   </section>
@@ -350,13 +420,13 @@
   <section id="sans">
     <div class="sec-num">02</div>
     <h2>Gerçekçi şans haritası</h2>
-    <p class="section-note">Sekiz rota, en yüksek şanstan en düşüğe sıralı. Ölçek mevcut profile göredir — genel zorluk değil, <em>senin</em> kazanma ihtimalin.</p>
+    <p class="section-note">Dokuz rota, en yüksek şanstan en düşüğe sıralı. Her rotanın altındaki bilgiler kurumun kendi sayfasından alındı; kaynak bağlantısı kartın sonunda.</p>
     <div class="routes">
 
       <article class="route">
         <div class="route-head">
           <div>
-            <h3>Almanya — harçsız devlet üniversiteleri</h3>
+            <h3>Almanya — harçsız eyaletlerdeki devlet üniversiteleri</h3>
             <div class="route-tag">Burs değil, rota · Almanya</div>
           </div>
           <div class="route-score g">
@@ -365,16 +435,18 @@
           </div>
         </div>
         <dl class="route-facts">
-          <div><dt>Kazandırdığı</dt><dd><strong>~£24.000/yıl</strong> — öğrenim ücreti zaten €0</dd></div>
+          <div><dt>Kazandırdığı</dt><dd><strong>~£24.000/yıl</strong> — öğrenim ücreti €0</dd></div>
+          <div><dt>Kabul şartı</dt><dd>Tanınan lisans derecesi + programın dil şartı; vize için bloke hesap <strong>€992/ay</strong> (€11.904/yıl)</dd></div>
           <div><dt>Başvuru</dt><dd>Normal program başvurusu; ayrı burs yarışı yok</dd></div>
-          <div><dt>Ana engel</dt><dd>Program kabulü ve blocked account (yaşam gideri kanıtı)</dd></div>
+          <div><dt>Ana engel</dt><dd>Eyalet seçimi: <strong>Bayern ve Baden-Württemberg</strong> artık AB dışına harç alıyor</dd></div>
         </dl>
+        <a class="src" href="https://www.study.eu/article/study-in-germany-for-free-what-you-need-to-know" target="_blank" rel="noopener">Kaynak: Study.eu — Study in Germany for free ↗</a>
       </article>
 
       <article class="route">
         <div class="route-head">
           <div>
-            <h3>Surrey Excellence Award</h3>
+            <h3>Surrey International Excellence Award</h3>
             <div class="route-tag">Kısmi burs · İngiltere</div>
           </div>
           <div class="route-score g">
@@ -383,10 +455,12 @@
           </div>
         </div>
         <dl class="route-facts">
-          <div><dt>Kazandırdığı</dt><dd><strong>£5.000</strong> tek seferlik indirim</dd></div>
-          <div><dt>Başvuru</dt><dd>Kabul aldıktan sonra; panel değerlendirmesi</dd></div>
-          <div><dt>Ana engel</dt><dd>Sert bir GPA barajı yok — asıl şart IELTS 6.5</dd></div>
+          <div><dt>Kazandırdığı</dt><dd><strong>£5.000</strong> öğrenim ücreti indirimi</dd></div>
+          <div><dt>Kabul şartı</dt><dd>UK 2:1 için <strong>GPA 2.8–3.0/4.0</strong>, 2:2 için 2.6–2.8 — <strong>profilinin altında</strong></dd></div>
+          <div><dt>Başvuru</dt><dd>Kabul aldıktan sonra, CAS düzenlenmeden önce; başvurular aylık değerlendiriliyor</dd></div>
+          <div><dt>Ana engel</dt><dd>Kendi imkânıyla okuyor olmak şart; başka burs alanlar, MBA / Biyoteknoloji / Gıda Bilimi gibi programlar ve uzaktan eğitim hariç</dd></div>
         </dl>
+        <a class="src" href="https://www.surrey.ac.uk/fees-and-funding/scholarships-and-bursaries/international-excellence-award-postgraduate" target="_blank" rel="noopener">Kaynak: University of Surrey ↗</a>
       </article>
 
       <article class="route">
@@ -401,16 +475,18 @@
           </div>
         </div>
         <dl class="route-facts">
-          <div><dt>Kazandırdığı</dt><dd><strong>€300/ay</strong> ≈ €3.600/yıl</dd></div>
-          <div><dt>Başvuru</dt><dd>Üniversiteye kayıt olduktan sonra, okul içi</dd></div>
-          <div><dt>Ana engel</dt><dd>Okul içi rekabet; akademik başarı tek kriter değil (sosyal katkı da sayılır)</dd></div>
+          <div><dt>Kazandırdığı</dt><dd><strong>€300/ay</strong> (€150 federal devlet + €150 özel sponsor) ≈ €3.600/yıl</dd></div>
+          <div><dt>Kabul şartı</dt><dd>Katılımcı bir Alman üniversitesine kayıtlı olmak; <strong>her uyruğa açık</strong>, aile geliri bakılmıyor</dd></div>
+          <div><dt>Başvuru</dt><dd>Kayıt sonrası, okul içi; tarih üniversiteye göre değişiyor</dd></div>
+          <div><dt>Ana engel</dt><dd>Sadece not değil; sivil katılım ve kişisel koşullar da değerlendirmeye giriyor</dd></div>
         </dl>
+        <a class="src" href="https://www.deutschlandstipendium.de/deutschlandstipendium/de/services/english/the-deutschlandstipendium-best-of-both-worlds-for-students.html" target="_blank" rel="noopener">Kaynak: Deutschlandstipendium (BMFTR) ↗</a>
       </article>
 
       <article class="route">
         <div class="route-head">
           <div>
-            <h3>NL Scholarship (Holland Scholarship)</h3>
+            <h3>NL Scholarship</h3>
             <div class="route-tag">Kısmi burs · Hollanda</div>
           </div>
           <div class="route-score a">
@@ -419,10 +495,12 @@
           </div>
         </div>
         <dl class="route-facts">
-          <div><dt>Kazandırdığı</dt><dd><strong>€5.000</strong> ilk yıl, tek seferlik</dd></div>
-          <div><dt>Başvuru</dt><dd>Kabul sonrası, 31 Ocak son tarih</dd></div>
-          <div><dt>Ana engel</dt><dd>Tutar küçük — Hollanda'nın €16–20k harcını tek başına çözmüyor</dd></div>
+          <div><dt>Kazandırdığı</dt><dd><strong>€5.000</strong>, yalnızca ilk yıl, bir defaya mahsus</dd></div>
+          <div><dt>Kabul şartı</dt><dd>AEA dışı uyruk; Hollanda'da alınmış bir derecesi olmamak; kurumun kendi kabul şartlarını karşılamak</dd></div>
+          <div><dt>Başvuru</dt><dd>Kabul sonrası, doğrudan üniversiteye; son tarih kuruma göre <strong>1 Şubat veya 1 Mayıs</strong></dd></div>
+          <div><dt>Ana engel</dt><dd>Tutar küçük: Hollanda'da AB dışı yüksek lisans harcı €12.000–30.000</dd></div>
         </dl>
+        <a class="src" href="https://www.studyinnl.org/finances/nl-scholarship" target="_blank" rel="noopener">Kaynak: Study in NL ↗</a>
       </article>
 
       <article class="route">
@@ -437,16 +515,18 @@
           </div>
         </div>
         <dl class="route-facts">
-          <div><dt>Kazandırdığı</dt><dd><strong>£10.000–15.000</strong> harç indirimi</dd></div>
-          <div><dt>Başvuru</dt><dd>Kabul sonrası, üniversitenin ayrı formu</dd></div>
-          <div><dt>Ana engel</dt><dd>Okul başına yılda 1–2 kişi; erken başvuru belirleyici, son tarihler Mart–Mayıs'ta kapanıyor</dd></div>
+          <div><dt>Kazandırdığı</dt><dd>En az <strong>£10.000</strong> harç indirimi (£5.000 British Council + £5.000 üniversite)</dd></div>
+          <div><dt>Kabul şartı</dt><dd>Lisans derecesi + üniversitenin İngilizce şartı; yalnızca <strong>bir yıllık taught master</strong>; başka bir bursla birleştirilemez</dd></div>
+          <div><dt>Başvuru</dt><dd>Kabul sonrası, üniversitenin kendi ayrı formuyla</dd></div>
+          <div><dt>Ana engel</dt><dd>2027 turunda 19 ülkeye <strong>toplam 153 burs</strong>; üniversitelerin teklif dönemi 4 Eylül 2026'da kapandı, Türkiye listesi henüz yayımlanmadı</dd></div>
         </dl>
+        <a class="src" href="https://opportunities-insight.britishcouncil.org/short-articles/opportunities/bids-great-scholarships-2027-now-open" target="_blank" rel="noopener">Kaynak: British Council — GREAT Scholarships 2027 ↗</a>
       </article>
 
       <article class="route">
         <div class="route-head">
           <div>
-            <h3>DAAD Study Scholarship</h3>
+            <h3>DAAD Study Scholarship — Master</h3>
             <div class="route-tag">Tam burs · Almanya</div>
           </div>
           <div class="route-score r">
@@ -455,16 +535,18 @@
           </div>
         </div>
         <dl class="route-facts">
-          <div><dt>Kazandırdığı</dt><dd><strong>€992/ay</strong> + sigorta + yolluk ≈ €12.000/yıl</dd></div>
-          <div><dt>Başvuru</dt><dd>Kabulden bağımsız başvurulabilir; Ekim civarı açılıyor</dd></div>
-          <div><dt>Ana engel</dt><dd>Üstün akademik profil bekliyor — GPA burada asıl filtre</dd></div>
+          <div><dt>Kazandırdığı</dt><dd><strong>€992/ay</strong> + yılda €460 eğitim ödeneği + sigorta + yolluk; 10–24 ay</dd></div>
+          <div><dt>Kabul şartı</dt><dd>Lisans derecesi <strong>6 yıldan eski olmamalı</strong>; Almanya'da 15 aydan uzun ikamet olmamalı; “ortalamanın üzerinde akademik başarı”</dd></div>
+          <div><dt>Başvuru</dt><dd>Üniversite kabulünden bağımsız; 2027 turu için son tarihler <strong>Ekim–Kasım 2026</strong> (ülkeye göre)</dd></div>
+          <div><dt>Ana engel</dt><dd>Asıl filtre akademik başarı; ayrıca yüksek lisans derecen varsa başvuramıyorsun</dd></div>
         </dl>
+        <a class="src" href="https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?detail=50026200" target="_blank" rel="noopener">Kaynak: DAAD burs veritabanı ↗</a>
       </article>
 
       <article class="route">
         <div class="route-head">
           <div>
-            <h3>Twente UTS / TU Delft Excellence</h3>
+            <h3>University of Twente Scholarship (UTS)</h3>
             <div class="route-tag">Kısmi–tam burs · Hollanda</div>
           </div>
           <div class="route-score r">
@@ -473,16 +555,38 @@
           </div>
         </div>
         <dl class="route-facts">
-          <div><dt>Kazandırdığı</dt><dd><strong>€15.000+</strong>, bazı durumlarda tam harç</dd></div>
-          <div><dt>Başvuru</dt><dd>Kabul sonrası; Twente 1 Nisan, TU Delft 1 Aralık</dd></div>
-          <div><dt>Ana engel</dt><dd>Açıkça “sınıfının ilk %5–10'u” şartı — mevcut profil bu eşiğin altında</dd></div>
+          <div><dt>Kazandırdığı</dt><dd><strong>€3.000–22.000</strong> bir yıl için; iki yıllık programda ikinci yıl aynı tutar tekrarlanabiliyor</dd></div>
+          <div><dt>Kabul şartı</dt><dd>AB/AEA dışı; MSc'ye (koşullu) kabul + öğrenci numarası; <strong>IELTS 6.5, her bölümden 6.0</strong></dd></div>
+          <div><dt>Başvuru</dt><dd><strong>15 Ekim 2026 09:00 – 1 Nisan 2027 16:00</strong>; sonuçlar Mayıs 2027'nin ilk haftası</dd></div>
+          <div><dt>Ana engel</dt><dd>“Mezuniyet sınıfının en iyi <strong>%5–10</strong>'u” şartı; ITC fakültesi ve pre-master programları hariç</dd></div>
         </dl>
+        <a class="src" href="https://www.utwente.nl/en/education/scholarship-finder/university-of-twente-scholarship/" target="_blank" rel="noopener">Kaynak: University of Twente ↗</a>
       </article>
 
       <article class="route">
         <div class="route-head">
           <div>
-            <h3>GOI-IES (Government of Ireland)</h3>
+            <h3>TU Delft — Justus &amp; Louise van Effen Excellence</h3>
+            <div class="route-tag">Tam burs · Hollanda</div>
+          </div>
+          <div class="route-score r">
+            <div class="meter r" aria-label="Şans 1/5"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+            <span class="score-label">Çok zayıf</span>
+          </div>
+        </div>
+        <dl class="route-facts">
+          <div><dt>Kazandırdığı</dt><dd><strong>Tam öğrenim ücreti</strong> + yaşam giderlerine katkı</dd></div>
+          <div><dt>Kabul şartı</dt><dd>Türk <strong>Lisans Diploması için CGPA ≥ 3.0/4.0</strong>; iki yıllık normal MSc programına kabul; TU Delft lisans mezunu olmamak</dd></div>
+          <div><dt>Başvuru</dt><dd>MSc başvurusuyla birlikte, <strong>tüm belgeler tek seferde</strong>; son tarih <strong>1 Aralık 2026, 23:59 CET</strong></dd></div>
+          <div><dt>Ana engel</dt><dd><strong>Fakülte başına 2 burs.</strong> Gösterge ölçüt “ilk %10” — belge istenmiyor ama rekabet buna göre</dd></div>
+        </dl>
+        <a class="src" href="https://www.tudelft.nl/en/education/study-programme-orientation/practical-matters/scholarships/justus-louise-van-effen-excellence-scholarships" target="_blank" rel="noopener">Kaynak: TU Delft ↗</a>
+      </article>
+
+      <article class="route">
+        <div class="route-head">
+          <div>
+            <h3>Government of Ireland — GOI-IES</h3>
             <div class="route-tag">Tam burs · İrlanda</div>
           </div>
           <div class="route-score r">
@@ -491,10 +595,12 @@
           </div>
         </div>
         <dl class="route-facts">
-          <div><dt>Kazandırdığı</dt><dd><strong>Tam harç + €10.000</strong> ≈ €30.000 değer</dd></div>
-          <div><dt>Başvuru</dt><dd>Mart son tarih; 2026 turu kapandı</dd></div>
-          <div><dt>Ana engel</dt><dd>Tüm dünyada yılda 60 kişi — en yüksek ödül, en düşük ihtimal</dd></div>
+          <div><dt>Kazandırdığı</dt><dd><strong>Tam harç muafiyeti + €10.000</strong> geçim ödeneği, bir yıl</dd></div>
+          <div><dt>Kabul şartı</dt><dd>AB/AEA, İsviçre ve İngiltere dışı ikametgâh; NFQ 9–10 programına koşullu veya kesin teklif; “üstün akademik başarı”, güçlü iletişim, sosyal katılım</dd></div>
+          <div><dt>Başvuru</dt><dd>2026 turu <strong>12 Mart 2026'da kapandı</strong>; 2027 turu henüz duyurulmadı</dd></div>
+          <div><dt>Ana engel</dt><dd>Tüm dünyada <strong>yılda 60 burs</strong> — en yüksek ödül, en düşük ihtimal</dd></div>
         </dl>
+        <a class="src" href="https://hea.ie/policy/internationalisation/goi-ies/" target="_blank" rel="noopener">Kaynak: Higher Education Authority (HEA) ↗</a>
       </article>
 
     </div>
@@ -503,145 +609,232 @@
   <section id="denge">
     <div class="sec-num">03</div>
     <h2>Şans × Kapsam: nerede emek harcamalı</h2>
-    <p class="section-note">Yatay eksen kazanma ihtimali, dikey eksen yıllık kazandırdığı para. Sağ üst köşe ideal: hem ulaşılabilir hem değerli. Sol üstteki bursların ödülü büyük ama pratikte piyango.</p>
+    <p class="section-note">Yatay eksen kazanma ihtimali, dikey eksen yıllık kazandırdığı para. Sağ üst köşe ideal: hem ulaşılabilir hem değerli. Sol üstteki bursların ödülü büyük ama kontenjanı bir avuç.</p>
     <div class="chart-box">
-      <canvas id="tradeChart" role="img" aria-label="Dağılım grafiği: Almanya harçsız rota hem en yüksek şans hem yaklaşık 24 bin sterlin değerle sağ üstte; Surrey 5 bin sterlin ile makul şansta; GOI-IES ve Twente yüksek değerli ama çok düşük şansta sol üstte."></canvas>
+      <canvas id="tradeChart" role="img" aria-label="Dağılım grafiği: Almanya harçsız rota hem en yüksek şans hem yaklaşık 24 bin sterlin değerle sağ üstte; Surrey 5 bin sterlin ile makul şansta; GOI-IES ve TU Delft yüksek değerli ama çok düşük şansta sol üstte."></canvas>
     </div>
     <ol class="chart-key" id="tradeKey" hidden>
-      <li><span class="k-n g">1</span><div>Almanya (harçsız)<em>£24k · rekabet yok</em></div></li>
+      <li><span class="k-n g">1</span><div>Almanya (harçsız eyalet)<em>£24k · rekabet yok</em></div></li>
       <li><span class="k-n g">2</span><div>Surrey Excellence<em>£5k · makul</em></div></li>
       <li><span class="k-n r">3</span><div>GOI-IES<em>£25,5k · çok zayıf</em></div></li>
-      <li><span class="k-n a">4</span><div>GREAT Türkiye<em>£12,5k · orta-zayıf</em></div></li>
-      <li><span class="k-n r">5</span><div>Twente / TU Delft<em>£12,8k · zayıf</em></div></li>
-      <li><span class="k-n r">6</span><div>DAAD<em>£10,1k · zayıf</em></div></li>
-      <li><span class="k-n a">7</span><div>NL Scholarship<em>£4,3k · makul</em></div></li>
-      <li><span class="k-n a">8</span><div>Deutschlandstipendium<em>£3,1k · orta</em></div></li>
+      <li><span class="k-n r">4</span><div>TU Delft van Effen<em>£25k · çok zayıf</em></div></li>
+      <li><span class="k-n a">5</span><div>GREAT Türkiye<em>£12,5k · orta-zayıf</em></div></li>
+      <li><span class="k-n r">6</span><div>Twente UTS<em>£10,6k · zayıf</em></div></li>
+      <li><span class="k-n r">7</span><div>DAAD<em>£10,5k · zayıf</em></div></li>
+      <li><span class="k-n a">8</span><div>NL Scholarship<em>£4,3k · makul</em></div></li>
+      <li><span class="k-n a">9</span><div>Deutschlandstipendium<em>£3,1k · orta</em></div></li>
     </ol>
-    <p class="chart-cap">Değerler karşılaştırma için £'ye çevrilmiştir (€1 ≈ £0,85).</p>
+    <p class="chart-cap">Değerler karşılaştırma için £'ye çevrildi (€1 ≈ £0,85). Tam burslarda değer, muaf tutulan öğrenim ücreti + geçim ödeneği toplamının tahminidir.</p>
     <p class="verdict">Grafikte sağ üstte tek bir nokta var ve o bir burs değil: Almanya. Emeğin çoğu buraya, kalanı Surrey'e gitmeli.</p>
+  </section>
+  <section id="sartlar">
+    <div class="sec-num">04</div>
+    <h2>Kabul şartları</h2>
+    <p class="section-note">Burs şartlarıyla karıştırılmaması gereken kısım: bunlar üniversiteye <em>girmek</em> için istenenler. Her satır ilgili kurumun kendi sayfasından okundu; “senin durumun” satırı bunları mevcut profille karşılaştırıyor.</p>
+
+    <h3 class="block">İngiltere — University of Surrey</h3>
+    <div class="block-sub">Yüksek lisans (postgraduate taught)</div>
+    <dl class="req">
+      <dt>Akademik</dt>
+      <dd>Lisans diploması. UK 2:1 karşılığı isteyen programlar için <strong>GPA 2.8–3.0 / 4.0</strong>; UK 2:2 isteyenler için <strong>2.6–2.8 / 4.0</strong>. Bazı programlar belirli derslerde daha yüksek not isteyebiliyor.</dd>
+      <dt>İngilizce</dt>
+      <dd>Kursa göre değişiyor; Surrey'in denklik tablosundaki yaygın ölçüt <strong>IELTS Academic 6.5, her bölümden 6.0</strong>. Ölçütün 0,5–1,0 bant altındaysan pre-sessional İngilizce programı var.</dd>
+      <dt>Burs için ek</dt>
+      <dd>Burs formunu doldurabilmek için önce <strong>teklif (offer) almış olmak</strong>, kendi imkânıyla okuyor olmak ve başvuruyu <strong>CAS düzenlenmeden önce</strong> tamamlamak gerekiyor.</dd>
+      <dt>Senin durumun</dt>
+      <dd class="you"><span class="ok">Akademik eşik geçildi.</span> 3.05–3.20, 2:1 için istenen 2.8–3.0 aralığının üstünde. <span class="no">İngilizce eksik.</span></dd>
+    </dl>
+
+    <h3 class="block">Almanya</h3>
+    <div class="block-sub">Devlet üniversiteleri · eyalete göre değişiyor</div>
+    <dl class="req">
+      <dt>Akademik</dt>
+      <dd>Almanya'da tanınan bir lisans derecesi. Çoğu üniversitede denklik değerlendirmesi uni-assist üzerinden yapılıyor.</dd>
+      <dt>Dil</dt>
+      <dd>Programın diline bağlı. İngilizce programlarda genelde IELTS 6.5 civarı; Almanca programlarda TestDaF, DSH, Goethe-Zertifikat gibi belgeler. Kesin eşik her programın kendi sayfasında.</dd>
+      <dt>Öğrenim ücreti</dt>
+      <dd>Çoğu eyalette <strong>€0</strong>. İki istisna: <strong>Baden-Württemberg</strong> AB/AEA dışından yarıyıl başına <strong>€1.500</strong>; <strong>Bayern</strong>'de FAU yüksek lisansta <strong>€2.000–6.000/yarıyıl</strong> (yaz dönemi 2027'den itibaren yeni kayıtlarda), TUM'da benzer tutarlar.</dd>
+      <dt>Dönem katkı payı</dt>
+      <dd>Harçtan ayrı, her yarıyıl <strong>€70–430</strong>. Genelde şehir içi veya bölgesel ulaşım kartını kapsıyor.</dd>
+      <dt>Vize</dt>
+      <dd>Bloke hesap (Sperrkonto): <strong>€992/ay → €11.904/yıl</strong>. Ayda yalnızca 1/12'si çekilebiliyor.</dd>
+      <dt>Senin durumun</dt>
+      <dd class="you"><span class="ok">Kabul için akademik engel yok.</span> Kritik karar hangi eyalete başvurduğun; harçsız eyaletlerde toplam maliyet yarıya iniyor.</dd>
+    </dl>
+
+    <h3 class="block">Hollanda</h3>
+    <div class="block-sub">TU Delft ve University of Twente</div>
+    <dl class="req">
+      <dt>TU Delft — akademik</dt>
+      <dd>Türk <strong>Lisans Diploması</strong> için <strong>CGPA en az 3.0 / 4.0</strong>. Ülkeye özel eşik tanımlanmayan durumlarda genel kural ölçek maksimumunun %75'i.</dd>
+      <dt>TU Delft — İngilizce</dt>
+      <dd><strong>IELTS Academic 7.0 genel, her bölümden en az 6.5.</strong> IELTS Online ve IELTS Indicator kabul edilmiyor.</dd>
+      <dt>Twente — İngilizce</dt>
+      <dd><strong>IELTS Academic 6.5 genel, her bölümden en az 6.0</strong> (veya C1 Advanced 176 / her bölüm 169). Önemli: dil şartı karşılanmadan <strong>koşullu kabul verilmiyor</strong>.</dd>
+      <dt>Öğrenim ücreti</dt>
+      <dd>AB dışı yüksek lisans için kuruma ve alana göre <strong>€12.000–30.000/yıl</strong>. Mühendislik ve teknik programlar üst bantta.</dd>
+      <dt>Senin durumun</dt>
+      <dd class="you"><span class="ok">TU Delft'in GPA eşiğini kıl payı geçiyorsun</span> (3.05–3.20 / eşik 3.0). Ama bursun aradığı “ilk %5–10” bambaşka bir eşik ve profil oraya ulaşmıyor. <span class="no">TU Delft'in 7.0 İngilizce şartı listedeki en yüksek bar.</span></dd>
+    </dl>
+
+    <h3 class="block">İrlanda</h3>
+    <div class="block-sub">GOI-IES üzerinden</div>
+    <dl class="req">
+      <dt>Sıra</dt>
+      <dd>Önce üniversiteye başvurulup <strong>koşullu ya da kesin teklif</strong> alınıyor; burs başvurusu ancak ondan sonra yapılabiliyor.</dd>
+      <dt>İkametgâh</dt>
+      <dd>AB/AEA, İsviçre ve İngiltere <strong>dışında</strong> ikametgâh. Rus ve Belarus vatandaşları hariç tutuluyor.</dd>
+      <dt>Değerlendirme</dt>
+      <dd>“Üstün akademik başarı geçmişi”, güçlü iletişim becerisi, ders dışı katılım ve İrlanda'yı seçme gerekçesi.</dd>
+      <dt>Senin durumun</dt>
+      <dd class="you"><span class="no">2026 turu kapandı</span>, 2027 turu duyurulmadı. Kontenjan dünya genelinde 60 kişi olduğu için plan buna dayandırılamaz.</dd>
+    </dl>
   </section>
 
   <section id="maliyet">
-    <div class="sec-num">04</div>
+    <div class="sec-num">05</div>
     <h2>Yıllık toplam maliyet</h2>
-    <p class="section-note">Öğrenim ücreti + yaşam gideri, en gerçekçi senaryolarla. Kısmi burs senaryosu £10.000'lik bir GREAT/Surrey kazanımını varsayar.</p>
+    <p class="section-note">Öğrenim ücreti + yaşam gideri. İngiltere kısmi burs senaryosu £10.000'lik bir GREAT/Surrey kazanımını, Almanya senaryoları da yaşam gideri için ayda €900–1.200 aralığını varsayıyor.</p>
     <div class="chart-box short">
-      <canvas id="costChart" role="img" aria-label="Sütun grafiği: İngiltere bursuz yaklaşık 38 bin sterlin, İngiltere kısmi burslu yaklaşık 27 bin sterlin, Hollanda yaklaşık 24 bin sterlin, Almanya harçsız yaklaşık 14 bin sterlin."></canvas>
+      <canvas id="costChart" role="img" aria-label="Sütun grafiği: İngiltere bursuz yaklaşık 38 bin sterlin, İngiltere kısmi burslu 27 bin, Hollanda 24 bin, Almanya Baden-Württemberg 17 bin, Almanya harçsız eyalet 14 bin sterlin."></canvas>
     </div>
-    <p class="verdict">Bursla bile İngiltere'de Almanya'nın neredeyse iki katını ödüyorsun. En gerçekçi “ucuza gitme” yolu bir burs kazanmak değil, Almanya'yı seçmek.</p>
+    <p class="chart-cap">Bayern'de TUM veya FAU gibi okullarda yüksek lisans harcı yarıyıl başına €2.000–6.000'e çıkabiliyor; o senaryoda Almanya, burs kazanılmış bir İngiltere ile aynı bandta.</p>
+    <p class="verdict">Bursla bile İngiltere'de, harçsız bir Alman eyaletinin neredeyse iki katını ödüyorsun. En gerçekçi “ucuza gitme” yolu bir burs kazanmak değil, doğru eyaleti seçmek.</p>
   </section>
 
   <section id="tarih">
-    <div class="sec-num">05</div>
+    <div class="sec-num">06</div>
     <h2>Son tarihler</h2>
-    <p class="section-note">Önündeki turlar yeşil noktalı; 2026 baharında kapanan turlar aşağıda soluk, gelecek yıl aynı tarihlerde tekrar açılacağı için referans olarak duruyor.</p>
+    <p class="section-note">Önündeki turlar yeşil noktalı. Kapanmış turlar, gelecek yıl aynı takvimde tekrarlanacağı için referans olarak duruyor.</p>
 
     <div class="tl-head">Önünde</div>
-    <div class="t-row up"><span class="t-date">Eki 2026</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">DAAD Study Scholarship</div><div class="t-sub">Kabulden bağımsız · motivasyon mektubu şimdiden hazırlanmalı</div></div></div>
-    <div class="t-row up"><span class="t-date">1 Ara 2026</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">TU Delft Excellence</div><div class="t-sub">Kabul başvurusu bundan önce tamamlanmalı</div></div></div>
-    <div class="t-row up"><span class="t-date">8 Oca 2027</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">Surrey Excellence — Şubat girişi</div><div class="t-sub">En yüksek gerçekçi şans · IELTS bu tarihten önce elde olmalı</div></div></div>
-    <div class="t-row up"><span class="t-date">31 Oca 2027</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">NL Scholarship</div><div class="t-sub">€5.000 · kabul sonrası ayrı form</div></div></div>
-    <div class="t-row up"><span class="t-date">1 Nis 2027</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">Twente UTS</div><div class="t-sub">İlk %5–10 şartı · düşük ihtimal</div></div></div>
+    <div class="t-row up"><span class="t-date">Eki–Kas 2026</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">DAAD Study Scholarship — 2027 turu</div><div class="t-sub">Kesin tarih ülkeye göre değişiyor · kabulden bağımsız başvurulabiliyor</div></div></div>
+    <div class="t-row up"><span class="t-date">15 Eki 2026</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">Twente UTS başvuruları açılıyor</div><div class="t-sub">09:00 CET · önce MSc kabulü ve öğrenci numarası gerekiyor</div></div></div>
+    <div class="t-row up"><span class="t-date">1 Ara 2026</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">TU Delft van Effen Excellence</div><div class="t-sub">23:59 CET · MSc başvurusuyla birlikte, tüm belgeler tek seferde</div></div></div>
+    <div class="t-row up"><span class="t-date">8 Oca 2027</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">Surrey Excellence — Şubat 2027 girişi</div><div class="t-sub">En yüksek gerçekçi şans · IELTS bu tarihten önce elde olmalı</div></div></div>
+    <div class="t-row up"><span class="t-date">1 Şub / 1 May</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">NL Scholarship 2027</div><div class="t-sub">Son tarih üniversiteye göre değişiyor · kabul sonrası ayrı form</div></div></div>
+    <div class="t-row up"><span class="t-date">1 Nis 2027</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">Twente UTS son tarih</div><div class="t-sub">16:00 CET · sonuçlar Mayıs 2027'nin ilk haftası</div></div></div>
+    <div class="t-row up"><span class="t-date">Duyurulacak</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">GREAT Türkiye 2027 üniversite listesi</div><div class="t-sub">Üniversitelerin teklif dönemi 4 Eylül 2026'da kapandı · liste sonrasında yayımlanıyor</div></div></div>
+    <div class="t-row up"><span class="t-date">Duyurulacak</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">Surrey Excellence — Eylül 2027 girişi</div><div class="t-sub">Üniversite “yakında açılacak” diyor</div></div></div>
 
-    <div class="tl-head">Kapandı — 2027 turu için referans</div>
-    <div class="t-row past"><span class="t-date">12 Mar 2026</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">GOI-IES (İrlanda)</div><div class="t-sub">Mart başında kapanıyor</div></div></div>
-    <div class="t-row past"><span class="t-date">22 Nis 2026</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">Warwick GREAT</div><div class="t-sub">Nisan sonu</div></div></div>
-    <div class="t-row past"><span class="t-date">1 May 2026</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">UWE Bristol GREAT</div><div class="t-sub">Mayıs başı</div></div></div>
-    <div class="t-row past"><span class="t-date">15 May 2026</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">Swansea / LJMU GREAT</div><div class="t-sub">Mayıs ortası · GREAT turları hep bahar sonunda biter</div></div></div>
+    <div class="tl-head">Kapandı — sonraki tur için referans</div>
+    <div class="t-row past"><span class="t-date">12 Mar 2026</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">GOI-IES 2026 turu</div><div class="t-sub">17:00 İrlanda saati · 2027 turu duyurulmadı</div></div></div>
+    <div class="t-row past"><span class="t-date">4 Eyl 2026</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">GREAT 2027 — üniversite teklif dönemi</div><div class="t-sub">Bu bir öğrenci son tarihi değil; hangi okulların burs vereceği burada belirleniyor</div></div></div>
+    <div class="t-row past"><span class="t-date">Eyl 2026</span><span class="t-dot-wrap"><span class="t-dot"></span></span><div><div class="t-label">Surrey Excellence — Eylül 2026 girişi</div><div class="t-sub">Kapandı</div></div></div>
   </section>
 
   <section id="tablo">
-    <div class="sec-num">06</div>
+    <div class="sec-num">07</div>
     <h2>Tek bakışta karşılaştırma</h2>
-    <p class="section-note">Aynı veriler tablo halinde — kapsam, ne zaman başvurulduğu ve mevcut profile göre şans.</p>
+    <p class="section-note">Aynı veriler tablo halinde — kapsam, kabul eşiği ve mevcut profile göre şans.</p>
     <div class="table-scroll">
       <table>
         <thead>
-          <tr><th>Rota</th><th>Kapsam</th><th>Yıllık değer</th><th>Başvuru zamanı</th><th>Şans</th></tr>
+          <tr><th>Rota</th><th>Kapsam</th><th>Yıllık değer</th><th>Kabul eşiği</th><th>Başvuru</th><th>Şans</th></tr>
         </thead>
         <tbody>
-          <tr><td class="name">Almanya harçsız rota</td><td>Harç €0</td><td class="num">~£24.000</td><td>Program başvurusuyla</td><td><span class="pill g">Rekabet yok</span></td></tr>
-          <tr><td class="name">Surrey Excellence</td><td class="num">£5.000</td><td class="num">£5.000</td><td>Kabul sonrası</td><td><span class="pill g">Makul</span></td></tr>
-          <tr><td class="name">Deutschlandstipendium</td><td class="num">€300/ay</td><td class="num">~£3.100</td><td>Kayıt sonrası</td><td><span class="pill a">Orta</span></td></tr>
-          <tr><td class="name">NL Scholarship</td><td class="num">€5.000</td><td class="num">~£4.250</td><td>Kabul sonrası · 31 Oca</td><td><span class="pill a">Makul, küçük</span></td></tr>
-          <tr><td class="name">GREAT Türkiye</td><td class="num">£10.000–15.000</td><td class="num">~£12.500</td><td>Kabul sonrası, ayrı form</td><td><span class="pill a">Orta-zayıf</span></td></tr>
-          <tr><td class="name">DAAD Study Scholarship</td><td class="num">€992/ay (tam)</td><td class="num">~£10.100</td><td>Kabulden bağımsız · Eki</td><td><span class="pill r">Zayıf</span></td></tr>
-          <tr><td class="name">Twente / TU Delft</td><td class="num">€15.000+</td><td class="num">~£12.750</td><td>Kabul sonrası</td><td><span class="pill r">Zayıf</span></td></tr>
-          <tr><td class="name">GOI-IES</td><td>Tam harç + €10.000</td><td class="num">~£25.500</td><td>Kabul sonrası · Mar</td><td><span class="pill r">Çok zayıf</span></td></tr>
+          <tr><td class="name">Almanya (harçsız eyalet)</td><td>Harç €0</td><td class="num">~£24.000</td><td>Tanınan lisans + dil</td><td>Program başvurusuyla</td><td><span class="pill g">Rekabet yok</span></td></tr>
+          <tr><td class="name">Surrey Excellence</td><td class="num">£5.000</td><td class="num">£5.000</td><td>GPA 2.8–3.0</td><td>Kabul sonrası · 8 Oca</td><td><span class="pill g">Makul</span></td></tr>
+          <tr><td class="name">Deutschlandstipendium</td><td class="num">€300/ay</td><td class="num">~£3.100</td><td>Kayıtlı olmak</td><td>Kayıt sonrası</td><td><span class="pill a">Orta</span></td></tr>
+          <tr><td class="name">NL Scholarship</td><td class="num">€5.000</td><td class="num">~£4.250</td><td>Kurumun kendi şartı</td><td>Kabul sonrası · 1 Şub/May</td><td><span class="pill a">Makul, küçük</span></td></tr>
+          <tr><td class="name">GREAT Türkiye</td><td class="num">£10.000+</td><td class="num">~£12.500</td><td>Lisans + dil</td><td>Kabul sonrası, ayrı form</td><td><span class="pill a">Orta-zayıf</span></td></tr>
+          <tr><td class="name">Twente UTS</td><td class="num">€3.000–22.000</td><td class="num">~£10.600</td><td>İlk %5–10 · IELTS 6.5</td><td>15 Eki – 1 Nis</td><td><span class="pill r">Zayıf</span></td></tr>
+          <tr><td class="name">DAAD Study Scholarship</td><td class="num">€992/ay</td><td class="num">~£10.500</td><td>Ortalama üstü başarı</td><td>Kabulden bağımsız · Eki–Kas</td><td><span class="pill r">Zayıf</span></td></tr>
+          <tr><td class="name">TU Delft van Effen</td><td>Tam harç + geçim</td><td class="num">~£25.000</td><td>CGPA 3.0 · IELTS 7.0</td><td>1 Ara 2026</td><td><span class="pill r">Çok zayıf</span></td></tr>
+          <tr><td class="name">GOI-IES</td><td>Tam harç + €10.000</td><td class="num">~£25.500</td><td>Üstün akademik başarı</td><td>Tur kapandı</td><td><span class="pill r">Çok zayıf</span></td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
   <section id="plan">
-    <div class="sec-num">07</div>
+    <div class="sec-num">08</div>
     <h2>Şimdi ne yapmalı</h2>
     <p class="section-note">Sıra önemli: ilk madde tamamlanmadan diğerlerinin hiçbiri gerçek değil.</p>
 
     <div class="reco">
       <span class="reco-n">01</span>
       <div>
-        <div class="reco-title">IELTS 6.5'i önceliklendir</div>
-        <div class="reco-desc">Bu tablodaki neredeyse her rota bu puanda açılıyor; B1'den 6.5'e çıkmak profildeki en büyük tek kazanç. Puan gelmeden hiçbir hücre gerçek değil.</div>
-        <div class="reco-when">Hedef: Ekim 2026'dan önce sınav</div>
+        <div class="reco-title">IELTS — hedefi programa göre belirle</div>
+        <div class="reco-desc">Tek bir “6.5” hedefi yanıltıcı. Surrey ve Twente için <strong>6.5 genel, her bölümden 6.0</strong>; TU Delft için <strong>7.0 genel, her bölümden 6.5</strong>. Bölüm bazlı alt sınır önemli: genel ortalaman yetse de tek bir bölümden düşük alırsan başvuru düşer. B1'den buraya çıkmak profildeki en büyük tek kazanç.</div>
+        <div class="reco-when">Hedef: Ekim 2026'dan önce ilk sınav</div>
       </div>
     </div>
     <div class="reco">
       <span class="reco-n">02</span>
       <div>
-        <div class="reco-title">Almanya'yı ana plan yap, burs değil</div>
-        <div class="reco-desc">Harçsız devlet üniversiteleri, kazanılabilecek en iyi bursun iki katından fazlasını kazandırıyor ve rekabet yarışı yok. Karar buradan başlamalı; burs onun üstüne eklenen bonus.</div>
-        <div class="reco-when">Program listesi + blocked account planı</div>
+        <div class="reco-title">Almanya'yı ana plan yap — ama eyaleti seçerek</div>
+        <div class="reco-desc">Harçsız eyaletler (Berlin, Kuzey Ren-Vestfalya, Hessen, Aşağı Saksonya, Hamburg, Saksonya…) kazanılabilecek en iyi bursun iki katından fazlasını kazandırıyor. Baden-Württemberg ve Bayern'i liste dışında tut; oradaki harçlar avantajı yiyor. Bloke hesap için €11.904'ü şimdiden planla.</div>
+        <div class="reco-when">Program listesi + bloke hesap planı</div>
       </div>
     </div>
     <div class="reco">
       <span class="reco-n">03</span>
       <div>
         <div class="reco-title">İngiltere için tek hedef: Surrey Excellence</div>
-        <div class="reco-desc">İngiltere'de kalınacaksa en yüksek gerçekçi kazanma ihtimali burada — kabul alınca panel değerlendiriyor, sert bir akademik eşik yok. GREAT'i ikinci seçenek olarak aynı başvuruda dene.</div>
+        <div class="reco-desc">Akademik eşiğini zaten geçiyorsun ve panel değerlendirmesinde sert bir baraj yok. Kritik ayrıntı: başvurular <strong>aylık değerlendiriliyor ve CAS öncesinde tamamlanmış olmalı</strong> — geç kalırsan not değil, takvim eler. GREAT'i ikinci seçenek olarak aynı okulda dene, ama Türkiye listesi yayımlanana kadar plan yapma.</div>
         <div class="reco-when">8 Ocak 2027 · Şubat girişi</div>
       </div>
     </div>
     <div class="reco">
       <span class="reco-n">04</span>
       <div>
-        <div class="reco-title">DAAD'a düşük beklentiyle, düşük maliyetle başvur</div>
-        <div class="reco-desc">Kazanma ihtimali zayıf ama başvuru bedava ve reddedilmek bir şey kaybettirmiyor. Güçlü bir motivasyon mektubu yaz; o mektup diğer başvurularda da yeniden kullanılır.</div>
-        <div class="reco-when">Ekim 2026 açılışı</div>
+        <div class="reco-title">DAAD'a düşük beklentiyle başvur</div>
+        <div class="reco-desc">Kazanma ihtimali zayıf ama başvuru bedava, kabulden bağımsız yapılabiliyor ve reddedilmek bir şey kaybettirmiyor. Bir ayrıntı lehine: lisans derecen 6 yıldan eski olmamalı — bu pencere kapanmadan kullan. Yazacağın motivasyon mektubu diğer başvurularda da yeniden kullanılır.</div>
+        <div class="reco-when">Ekim–Kasım 2026</div>
       </div>
     </div>
     <div class="reco">
       <span class="reco-n">05</span>
       <div>
-        <div class="reco-title">Teknik CV'yi burs değil, kabul için güçlendir</div>
-        <div class="reco-desc">GPA geriye dönük değiştirilemez; değiştirilebilen tek şey portföy. Bitmiş, çalışan, anlatılabilir 2–3 proje hem kabul komitesinde hem Surrey panelinde GPA'in yerini kısmen doldurur.</div>
+        <div class="reco-title">Teknik CV'yi burs için değil, kabul için güçlendir</div>
+        <div class="reco-desc">GPA geriye dönük değiştirilemez; değiştirilebilen tek şey portföy. Bitmiş, çalışan, anlatılabilir 2–3 proje hem kabul komitesinde hem Surrey panelinde ağırlık taşır. Tam burslar için “ilk %5–10” şartını kapatmaz — o yüzden buraya harcanan emeği burs beklentisiyle değil, kabul ve iş beklentisiyle ölç.</div>
         <div class="reco-when">Sürekli · başvurulara kadar</div>
       </div>
     </div>
   </section>
 
+  <section id="kaynak">
+    <div class="sec-num">09</div>
+    <h2>Kaynaklar</h2>
+    <p class="section-note">Bu sayfadaki tutar, tarih ve eşiklerin okunduğu sayfalar. Hepsi 3 Eylül 2026'da kontrol edildi.</p>
+    <ul class="sources">
+      <li><a href="https://www.surrey.ac.uk/fees-and-funding/scholarships-and-bursaries/international-excellence-award-postgraduate" target="_blank" rel="noopener">Surrey — International Excellence Award (Postgraduate)</a><span>surrey.ac.uk · burs tutarı, uygunluk, 8 Ocak 2027 son tarihi</span></li>
+      <li><a href="https://www.surrey.ac.uk/turkiye/entry-requirements" target="_blank" rel="noopener">Surrey — Türkiye kabul şartları</a><span>surrey.ac.uk · UK 2:1 ve 2:2 için GPA aralıkları</span></li>
+      <li><a href="https://www.surrey.ac.uk/apply/international/english-language-requirements" target="_blank" rel="noopener">Surrey — İngilizce dil şartları</a><span>surrey.ac.uk · IELTS denklik tablosu</span></li>
+      <li><a href="https://opportunities-insight.britishcouncil.org/short-articles/opportunities/bids-great-scholarships-2027-now-open" target="_blank" rel="noopener">British Council — GREAT Scholarships 2027</a><span>britishcouncil.org · £10.000 alt sınır, 153 burs, 4 Eylül 2026 teklif son tarihi</span></li>
+      <li><a href="https://www.britishcouncil.org.tr/en/study-uk/great-scholarships" target="_blank" rel="noopener">British Council Türkiye — GREAT Scholarships</a><span>britishcouncil.org.tr · Türkiye listesi buradan duyuruluyor</span></li>
+      <li><a href="https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?detail=50026200" target="_blank" rel="noopener">DAAD — Study Scholarships, Master Studies</a><span>daad.de · €992/ay, €460 eğitim ödeneği, 6 yıl kuralı, 15 ay ikamet kuralı</span></li>
+      <li><a href="https://www.daad.de/en/studying-in-germany/living-in-germany/finances/" target="_blank" rel="noopener">DAAD — Costs of education and living</a><span>daad.de · dönem katkı payı €70–430, aylık geçim €900–1.200</span></li>
+      <li><a href="https://www.deutschlandstipendium.de/deutschlandstipendium/de/services/english/the-deutschlandstipendium-best-of-both-worlds-for-students.html" target="_blank" rel="noopener">Deutschlandstipendium — resmî tanıtım</a><span>deutschlandstipendium.de · €300/ay, uyruk ve gelir bağımsızlığı</span></li>
+      <li><a href="https://www.fau.eu/studying/international-students/application-and-enrollment-for-international-applicants/tuition-fees-for-students-from-non-eu-states/" target="_blank" rel="noopener">FAU — AB dışı öğrenciler için öğrenim ücretleri</a><span>fau.eu · yüksek lisans €2.000–6.000/yarıyıl, yaz dönemi 2027'den itibaren</span></li>
+      <li><a href="https://www.study.eu/article/study-in-germany-for-free-what-you-need-to-know" target="_blank" rel="noopener">Study.eu — Study in Germany for free</a><span>study.eu · harçsız eyaletler ve Baden-Württemberg'in €1.500/yarıyıl istisnası</span></li>
+      <li><a href="https://www.study.eu/article/germany-blocked-bank-accounts-for-students-guide" target="_blank" rel="noopener">Study.eu — Almanya bloke hesap rehberi</a><span>study.eu · 2027 için €992/ay, €11.904/yıl</span></li>
+      <li><a href="https://www.studyinnl.org/finances/nl-scholarship" target="_blank" rel="noopener">Study in NL — NL Scholarship</a><span>studyinnl.org · €5.000, AEA dışı şartı, kurum bazlı son tarihler</span></li>
+      <li><a href="https://www.studyinnl.org/finances/tuition-fees" target="_blank" rel="noopener">Study in NL — Öğrenim ücretleri</a><span>studyinnl.org · AB dışı yüksek lisans harç aralığı</span></li>
+      <li><a href="https://www.tudelft.nl/en/education/study-programme-orientation/practical-matters/scholarships/justus-louise-van-effen-excellence-scholarships" target="_blank" rel="noopener">TU Delft — Justus &amp; Louise van Effen Excellence Scholarships</a><span>tudelft.nl · fakülte başına 2 burs, ilk %10 göstergesi, 1 Aralık 2026</span></li>
+      <li><a href="https://www.tudelft.nl/en/education/admission-and-application/msc-international-diploma/admission-requirements/where-did-you-obtain-your-degree" target="_blank" rel="noopener">TU Delft — Ülkeye göre kabul şartları</a><span>tudelft.nl · Türk Lisans Diploması için CGPA 3.0/4.0</span></li>
+      <li><a href="https://www.utwente.nl/en/education/scholarship-finder/university-of-twente-scholarship/" target="_blank" rel="noopener">University of Twente — UTS bursu</a><span>utwente.nl · €3.000–22.000, ilk %5–10, 15 Eki 2026 – 1 Nis 2027</span></li>
+      <li><a href="https://www.utwente.nl/en/education/master/admission-requirements/language-requirement/" target="_blank" rel="noopener">University of Twente — Dil şartı</a><span>utwente.nl · IELTS 6.5 / her bölüm 6.0, koşullu kabul yok</span></li>
+      <li><a href="https://hea.ie/policy/internationalisation/goi-ies/" target="_blank" rel="noopener">Higher Education Authority — GOI-IES</a><span>hea.ie · €10.000 + tam harç muafiyeti, yılda 60 burs, 12 Mart 2026</span></li>
+    </ul>
+  </section>
+
   <footer>
-    Rakamlar Ağustos 2026 araştırmasına dayanır · son tarihler ve tutarlar yıldan yıla değişir<br>
-    Başvuru öncesi her satırı resmi kaynaktan teyit et · kur çevrimi €1 ≈ £0,85
+    Tutarlar ve son tarihler 3 Eylül 2026'da resmi kaynaklardan okundu · her yıl değişir<br>
+    Başvurudan önce ilgili sayfadan tekrar teyit et · kur çevrimi €1 ≈ £0,85 varsayımıyla
   </footer>
 
 </div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 (function(){
   var css = function(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); };
 
   var theme = {
-    ink: css('--ink'),
-    soft: css('--ink-soft'),
-    faint: css('--ink-faint'),
-    grid: css('--grid'),
-    green: css('--green'),
-    amber: css('--amber'),
-    red: css('--red'),
-    surface: css('--surface'),
-    line: css('--line')
+    ink: css('--ink'), soft: css('--ink-soft'), faint: css('--ink-faint'),
+    grid: css('--grid'), green: css('--green'), amber: css('--amber'),
+    red: css('--red'), surface: css('--surface'), line: css('--line')
   };
 
   var mono = "'IBM Plex Mono', monospace";
@@ -649,25 +842,28 @@
 
   var colorOf = function(c){ return c === 'green' ? theme.green : (c === 'amber' ? theme.amber : theme.red); };
 
-  // Listed most-important first: the solver places labels in this order, so the
-  // top entries get their preferred spot when space is tight.
+  // x is the chance axis (1 = çok zayıf … 5 = rekabet yok), y the yearly value in £k.
+  // Listed most-important first: the label solver places them in this order, so the
+  // top entries get their preferred spot when space is tight. The numbered key list
+  // in the markup follows this same order.
   var routes = [
-    { n:'Almanya (harçsız)',   x:5, y:24.0,  c:'green' },
-    { n:'Surrey Excellence',   x:4, y:5.0,   c:'green' },
-    { n:'GOI-IES',             x:1, y:25.5,  c:'red'   },
-    { n:'GREAT Türkiye',       x:2, y:12.5,  c:'amber' },
-    { n:'Twente / TU Delft',   x:1, y:12.75, c:'red'   },
-    { n:'DAAD',                x:1, y:10.1,  c:'red'   },
-    { n:'NL Scholarship',      x:3, y:4.25,  c:'amber' },
-    { n:'Deutschlandstip.',    x:3, y:3.1,   c:'amber' }
+    { n:'Almanya (harçsız)',   x:5.00, y:24.0, c:'green', lab:'Rekabet yok' },
+    { n:'Surrey Excellence',   x:4.00, y:5.0,  c:'green', lab:'Makul şans' },
+    { n:'GOI-IES',             x:0.80, y:25.5, c:'red',   lab:'Çok zayıf · yılda 60 burs' },
+    { n:'TU Delft van Effen',  x:1.05, y:25.0, c:'red',   lab:'Çok zayıf · fakülte başına 2' },
+    { n:'GREAT Türkiye',       x:2.00, y:12.5, c:'amber', lab:'Orta-zayıf' },
+    { n:'Twente UTS',          x:1.30, y:10.6, c:'red',   lab:'Zayıf · ilk %5–10 şartı' },
+    { n:'DAAD',                x:1.55, y:10.5, c:'red',   lab:'Zayıf · ortalama üstü başarı' },
+    { n:'NL Scholarship',      x:3.20, y:4.25, c:'amber', lab:'Makul, küçük tutar' },
+    { n:'Deutschlandstip.',    x:2.95, y:3.1,  c:'amber', lab:'Orta' }
   ];
 
   // Places a text label beside every point without letting labels collide with
   // each other or sit on top of a foreign marker. Each label tries a list of
   // candidate spots (right, left, then diagonals) and takes the first that is
-  // free and inside the canvas. If the full names cannot all be placed - which
-  // is what happens on narrow screens - the whole chart switches to numbers and
-  // the numbered key underneath the chart is revealed instead.
+  // free and inside the allowed area. If the full names cannot all be placed -
+  // which is what happens on narrow screens - the whole chart switches to
+  // numbers and the numbered key underneath the chart is revealed instead.
   var LBL_FS = 11, GAP = 9, PAD = 3, MARKER_R = 8;
 
   var boxesOverlap = function(a, b){
@@ -680,8 +876,8 @@
   };
 
   // Returns placed boxes, or null when even one label has nowhere to go.
-  // `area` is the plot rectangle: labels must stay inside it so they never
-  // land on top of the axis tick labels.
+  // `area` is the region labels may use: kept clear of the left and bottom
+  // edges, where the axis tick labels live.
   var placeLabels = function(ctx, pts, texts, area){
     var placed = [];
     for (var i = 0; i < pts.length; i++) {
@@ -718,8 +914,6 @@
     id: 'pointLabels',
     afterDatasetsDraw: function(chart){
       var ctx = chart.ctx;
-      // Labels may use the full canvas width and top, but must stay clear of the
-      // two edges the axis tick labels occupy: left (£ values) and bottom (levels).
       var a = chart.chartArea;
       var area = { left: a.left + 1, right: chart.width - 2, top: 2, bottom: a.bottom - 1 };
       var pts = chart.getDatasetMeta(0).data.map(function(p){ return { x: p.x, y: p.y }; });
@@ -752,6 +946,18 @@
     }
   };
 
+  var tooltipStyle = {
+    backgroundColor: theme.surface,
+    borderColor: theme.line,
+    borderWidth: 1,
+    titleColor: theme.ink,
+    bodyColor: theme.soft,
+    titleFont: { family: sans, size: 13 },
+    bodyFont: { family: mono, size: 12 },
+    displayColors: false,
+    padding: 10
+  };
+
   var tradeChart = new Chart(document.getElementById('tradeChart'), {
     type: 'scatter',
     data: {
@@ -769,24 +975,15 @@
       layout: { padding: { right: 14, top: 10 } },
       plugins: {
         legend: { display: false },
-        tooltip: {
-          backgroundColor: theme.surface,
-          borderColor: theme.line,
-          borderWidth: 1,
-          titleColor: theme.ink,
-          bodyColor: theme.soft,
-          titleFont: { family: sans, size: 13 },
-          bodyFont: { family: mono, size: 12 },
-          displayColors: false,
-          padding: 10,
+        tooltip: Object.assign({}, tooltipStyle, {
           callbacks: {
             title: function(items){ return routes[items[0].dataIndex].n; },
             label: function(item){
-              var lv = ['', 'Çok düşük şans', 'Orta-zayıf', 'Orta', 'Makul şans', 'Rekabet yok'];
-              return ['Yıllık değer: £' + item.parsed.y.toFixed(1) + 'k', 'Şans: ' + lv[item.parsed.x]];
+              return ['Yıllık değer: £' + item.parsed.y.toFixed(1) + 'k',
+                      'Şans: ' + routes[item.dataIndex].lab];
             }
           }
-        }
+        })
       },
       scales: {
         x: {
@@ -802,7 +999,7 @@
             color: theme.faint,
             font: { family: mono, size: 10 },
             callback: function(v){
-              return ({1:'çok zayıf', 2:'orta-zayıf', 3:'orta', 4:'makul', 5:'rekabet\nyok'})[v] || '';
+              return ({1:'çok zayıf', 2:'orta-zayıf', 3:'orta', 4:'makul', 5:'rekabet yok'})[v] || '';
             }
           },
           grid: { color: theme.grid, drawTicks: false }
@@ -821,10 +1018,11 @@
   var costChart = new Chart(document.getElementById('costChart'), {
     type: 'bar',
     data: {
-      labels: [['İngiltere','(bursuz)'], ['İngiltere','(kısmi burs)'], ['Hollanda',''], ['Almanya','(harçsız)']],
+      labels: [['İngiltere','(bursuz)'], ['İngiltere','(kısmi burs)'], ['Hollanda',''],
+               ['Almanya','(Ba-Wü)'], ['Almanya','(harçsız)']],
       datasets: [{
-        data: [38000, 27000, 24000, 14000],
-        backgroundColor: [theme.red, theme.amber, theme.amber, theme.green],
+        data: [38000, 27000, 24000, 17000, 14000],
+        backgroundColor: [theme.red, theme.amber, theme.amber, theme.amber, theme.green],
         borderRadius: 2,
         maxBarThickness: 64
       }]
@@ -834,20 +1032,12 @@
       maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
-        tooltip: {
-          backgroundColor: theme.surface,
-          borderColor: theme.line,
-          borderWidth: 1,
-          titleColor: theme.ink,
-          bodyColor: theme.soft,
-          displayColors: false,
-          padding: 10,
-          bodyFont: { family: mono, size: 12 },
+        tooltip: Object.assign({}, tooltipStyle, {
           callbacks: {
             title: function(items){ return String(items[0].label).replace(/,/g, ' ').trim(); },
             label: function(item){ return 'Yıllık toplam: £' + item.parsed.y.toLocaleString('tr-TR'); }
           }
-        }
+        })
       },
       scales: {
         y: {
