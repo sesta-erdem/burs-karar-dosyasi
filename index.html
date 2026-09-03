@@ -680,7 +680,9 @@
   };
 
   // Returns placed boxes, or null when even one label has nowhere to go.
-  var placeLabels = function(ctx, pts, texts, w, h){
+  // `area` is the plot rectangle: labels must stay inside it so they never
+  // land on top of the axis tick labels.
+  var placeLabels = function(ctx, pts, texts, area){
     var placed = [];
     for (var i = 0; i < pts.length; i++) {
       var pt = pts[i], tw = ctx.measureText(texts[i]).width, half = LBL_FS * 0.75;
@@ -699,7 +701,8 @@
         var box = { x1: cands[c][0], x2: cands[c][0] + tw,
                     y1: cands[c][1] - half, y2: cands[c][1] + half,
                     x: cands[c][0], y: cands[c][1] };
-        if (box.x1 < 2 || box.x2 > w - 2 || box.y1 < 2 || box.y2 > h - 2) continue;
+        if (box.x1 < area.left || box.x2 > area.right ||
+            box.y1 < area.top  || box.y2 > area.bottom) continue;
         var clash = false;
         for (var j = 0; j < placed.length && !clash; j++) clash = boxesOverlap(box, placed[j]);
         for (var k = 0; k < pts.length && !clash; k++) if (k !== i) clash = boxHitsMarker(box, pts[k]);
@@ -714,7 +717,9 @@
   var labelPlugin = {
     id: 'pointLabels',
     afterDatasetsDraw: function(chart){
-      var ctx = chart.ctx, w = chart.width, h = chart.height;
+      var ctx = chart.ctx;
+      var a = chart.chartArea;
+      var area = { left: a.left + 1, right: a.right - 1, top: a.top + 1, bottom: a.bottom - 1 };
       var pts = chart.getDatasetMeta(0).data.map(function(p){ return { x: p.x, y: p.y }; });
       var names = routes.map(function(r){ return r.n; });
       var nums = routes.map(function(r, i){ return String(i + 1); });
@@ -724,12 +729,12 @@
       ctx.textAlign = 'left';
 
       ctx.font = LBL_FS + 'px ' + mono;
-      var placed = placeLabels(ctx, pts, names, w, h);
+      var placed = placeLabels(ctx, pts, names, area);
       var compact = !placed;
 
       if (compact) {
         ctx.font = '500 ' + LBL_FS + 'px ' + mono;
-        placed = placeLabels(ctx, pts, nums, w, h);
+        placed = placeLabels(ctx, pts, nums, area);
       }
 
       var key = document.getElementById('tradeKey');
