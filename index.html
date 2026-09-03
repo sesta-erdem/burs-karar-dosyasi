@@ -197,10 +197,13 @@
   .chart-box.short{height:270px}
   .chart-key{list-style:none;display:grid;gap:7px;margin:18px 0 0}
   .chart-key li{
-    display:grid;grid-template-columns:20px 1fr;gap:8px;
-    font-size:13.5px;align-items:baseline;
+    display:grid;grid-template-columns:20px 1fr;gap:10px;
+    font-size:14px;align-items:baseline;
   }
-  .chart-key em{font-style:normal;color:var(--ink-faint);font-family:'IBM Plex Mono',monospace;font-size:11.5px;display:block}
+  .chart-key em{
+    font-style:normal;color:var(--ink-faint);font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;display:block;margin-top:1px;
+  }
   .k-n{
     font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
     text-align:center;
@@ -503,14 +506,14 @@
       <canvas id="tradeChart" role="img" aria-label="Dağılım grafiği: Almanya harçsız rota hem en yüksek şans hem yaklaşık 24 bin sterlin değerle sağ üstte; Surrey 5 bin sterlin ile makul şansta; GOI-IES ve Twente yüksek değerli ama çok düşük şansta sol üstte."></canvas>
     </div>
     <ol class="chart-key" id="tradeKey" hidden>
-      <li><span class="k-n g">1</span> Almanya (harçsız) <em>£24k · rekabet yok</em></li>
-      <li><span class="k-n g">2</span> Surrey Excellence <em>£5k · makul</em></li>
-      <li><span class="k-n a">3</span> Deutschlandstipendium <em>£3,1k · orta</em></li>
-      <li><span class="k-n a">4</span> NL Scholarship <em>£4,3k · makul</em></li>
-      <li><span class="k-n a">5</span> GREAT Türkiye <em>£12,5k · orta-zayıf</em></li>
-      <li><span class="k-n r">6</span> DAAD <em>£10,1k · zayıf</em></li>
-      <li><span class="k-n r">7</span> Twente / TU Delft <em>£12,8k · zayıf</em></li>
-      <li><span class="k-n r">8</span> GOI-IES <em>£25,5k · çok zayıf</em></li>
+      <li><span class="k-n g">1</span><div>Almanya (harçsız)<em>£24k · rekabet yok</em></div></li>
+      <li><span class="k-n g">2</span><div>Surrey Excellence<em>£5k · makul</em></div></li>
+      <li><span class="k-n r">3</span><div>GOI-IES<em>£25,5k · çok zayıf</em></div></li>
+      <li><span class="k-n a">4</span><div>GREAT Türkiye<em>£12,5k · orta-zayıf</em></div></li>
+      <li><span class="k-n r">5</span><div>Twente / TU Delft<em>£12,8k · zayıf</em></div></li>
+      <li><span class="k-n r">6</span><div>DAAD<em>£10,1k · zayıf</em></div></li>
+      <li><span class="k-n a">7</span><div>NL Scholarship<em>£4,3k · makul</em></div></li>
+      <li><span class="k-n a">8</span><div>Deutschlandstipendium<em>£3,1k · orta</em></div></li>
     </ol>
     <p class="chart-cap">Değerler karşılaştırma için £'ye çevrilmiştir (€1 ≈ £0,85).</p>
     <p class="verdict">Grafikte sağ üstte tek bir nokta var ve o bir burs değil: Almanya. Emeğin çoğu buraya, kalanı Surrey'e gitmeli.</p>
@@ -644,49 +647,98 @@
 
   var colorOf = function(c){ return c === 'green' ? theme.green : (c === 'amber' ? theme.amber : theme.red); };
 
+  // Listed most-important first: the solver places labels in this order, so the
+  // top entries get their preferred spot when space is tight.
   var routes = [
-    { n:'Almanya (harçsız)',   x:5, y:24.0, c:'green', side:'left'  },
-    { n:'Surrey Excellence',   x:4, y:5.0,  c:'green', side:'right' },
-    { n:'Deutschlandstip.',    x:3, y:3.1,  c:'amber', side:'right', dy:16 },
-    { n:'NL Scholarship',      x:3, y:4.25, c:'amber', side:'left',  dy:-10 },
-    { n:'GREAT Türkiye',       x:2, y:12.5, c:'amber', side:'right', dy:12 },
-    { n:'DAAD',                x:1, y:10.1, c:'red',   side:'right' },
-    { n:'Twente / TU Delft',   x:1, y:12.75,c:'red',   side:'right', dy:-13 },
-    { n:'GOI-IES',             x:1, y:25.5, c:'red',   side:'right' }
+    { n:'Almanya (harçsız)',   x:5, y:24.0,  c:'green' },
+    { n:'Surrey Excellence',   x:4, y:5.0,   c:'green' },
+    { n:'GOI-IES',             x:1, y:25.5,  c:'red'   },
+    { n:'GREAT Türkiye',       x:2, y:12.5,  c:'amber' },
+    { n:'Twente / TU Delft',   x:1, y:12.75, c:'red'   },
+    { n:'DAAD',                x:1, y:10.1,  c:'red'   },
+    { n:'NL Scholarship',      x:3, y:4.25,  c:'amber' },
+    { n:'Deutschlandstip.',    x:3, y:3.1,   c:'amber' }
   ];
 
-  // Labels each point with the route name. Full names need horizontal room, so
-  // below ~500px the plugin falls back to numbers and reveals the key list
-  // underneath the chart instead.
-  var COMPACT_AT = 500;
+  // Places a text label beside every point without letting labels collide with
+  // each other or sit on top of a foreign marker. Each label tries a list of
+  // candidate spots (right, left, then diagonals) and takes the first that is
+  // free and inside the canvas. If the full names cannot all be placed - which
+  // is what happens on narrow screens - the whole chart switches to numbers and
+  // the numbered key underneath the chart is revealed instead.
+  var LBL_FS = 11, GAP = 9, PAD = 3, MARKER_R = 8;
+
+  var boxesOverlap = function(a, b){
+    return a.x1 - PAD < b.x2 && b.x1 - PAD < a.x2 &&
+           a.y1 - PAD < b.y2 && b.y1 - PAD < a.y2;
+  };
+  var boxHitsMarker = function(box, pt){
+    return pt.x > box.x1 - MARKER_R && pt.x < box.x2 + MARKER_R &&
+           pt.y > box.y1 - MARKER_R && pt.y < box.y2 + MARKER_R;
+  };
+
+  // Returns placed boxes, or null when even one label has nowhere to go.
+  var placeLabels = function(ctx, pts, texts, w, h){
+    var placed = [];
+    for (var i = 0; i < pts.length; i++) {
+      var pt = pts[i], tw = ctx.measureText(texts[i]).width, half = LBL_FS * 0.75;
+      var cands = [
+        [pt.x + GAP,          pt.y],
+        [pt.x - GAP - tw,     pt.y],
+        [pt.x + GAP,          pt.y - LBL_FS - 4],
+        [pt.x - GAP - tw,     pt.y - LBL_FS - 4],
+        [pt.x + GAP,          pt.y + LBL_FS + 4],
+        [pt.x - GAP - tw,     pt.y + LBL_FS + 4],
+        [pt.x - tw / 2,       pt.y - LBL_FS - 6],
+        [pt.x - tw / 2,       pt.y + LBL_FS + 6]
+      ];
+      var got = null;
+      for (var c = 0; c < cands.length && !got; c++) {
+        var box = { x1: cands[c][0], x2: cands[c][0] + tw,
+                    y1: cands[c][1] - half, y2: cands[c][1] + half,
+                    x: cands[c][0], y: cands[c][1] };
+        if (box.x1 < 2 || box.x2 > w - 2 || box.y1 < 2 || box.y2 > h - 2) continue;
+        var clash = false;
+        for (var j = 0; j < placed.length && !clash; j++) clash = boxesOverlap(box, placed[j]);
+        for (var k = 0; k < pts.length && !clash; k++) if (k !== i) clash = boxHitsMarker(box, pts[k]);
+        if (!clash) got = box;
+      }
+      if (!got) return null;
+      placed.push(got);
+    }
+    return placed;
+  };
+
   var labelPlugin = {
     id: 'pointLabels',
     afterDatasetsDraw: function(chart){
-      var ctx = chart.ctx;
-      var meta = chart.getDatasetMeta(0);
-      var w = chart.width;
-      var compact = w < COMPACT_AT;
+      var ctx = chart.ctx, w = chart.width, h = chart.height;
+      var pts = chart.getDatasetMeta(0).data.map(function(p){ return { x: p.x, y: p.y }; });
+      var names = routes.map(function(r){ return r.n; });
+      var nums = routes.map(function(r, i){ return String(i + 1); });
+
+      ctx.save();
+      ctx.textBaseline = 'middle';
+      ctx.textAlign = 'left';
+
+      ctx.font = LBL_FS + 'px ' + mono;
+      var placed = placeLabels(ctx, pts, names, w, h);
+      var compact = !placed;
+
+      if (compact) {
+        ctx.font = '500 ' + LBL_FS + 'px ' + mono;
+        placed = placeLabels(ctx, pts, nums, w, h);
+      }
+
       var key = document.getElementById('tradeKey');
       if (key) key.hidden = !compact;
 
-      var fs = compact ? 11 : 11;
-      var gap = compact ? 7 : 9;
-      ctx.save();
-      ctx.font = (compact ? '500 ' : '') + fs + 'px ' + mono;
-      ctx.textBaseline = 'middle';
-      ctx.textAlign = 'left';
-      meta.data.forEach(function(pt, i){
-        var r = routes[i];
-        var txt = compact ? String(i + 1) : r.n;
-        ctx.fillStyle = compact ? colorOf(r.c) : theme.soft;
-        var tw = ctx.measureText(txt).width;
-        var x = r.side === 'left' ? pt.x - gap - tw : pt.x + gap;
-        // flip to the other side if the preferred one runs off the canvas
-        if (x + tw > w - 2) x = pt.x - gap - tw;
-        if (x < 2) x = pt.x + gap;
-        x = Math.max(2, Math.min(x, w - tw - 2));
-        ctx.fillText(txt, x, pt.y + (r.dy || 0));
-      });
+      if (placed) {
+        placed.forEach(function(box, i){
+          ctx.fillStyle = compact ? colorOf(routes[i].c) : theme.soft;
+          ctx.fillText(compact ? nums[i] : names[i], box.x, box.y);
+        });
+      }
       ctx.restore();
     }
   };
@@ -731,12 +783,17 @@
         x: {
           min: 0.5, max: 5.5,
           title: { display: true, text: 'Kazanma ihtimali →', color: theme.faint, font: { family: mono, size: 11 } },
+          // half-unit padding keeps points off the frame, but it also means the
+          // default ticks land on .5 values - so pin them to the five levels
+          afterBuildTicks: function(axis){
+            axis.ticks = [1, 2, 3, 4, 5].map(function(v){ return { value: v }; });
+          },
           ticks: {
-            stepSize: 1,
+            autoSkip: false,
             color: theme.faint,
             font: { family: mono, size: 10 },
             callback: function(v){
-              return ({1:'çok zayıf', 2:'orta-zayıf', 3:'orta', 4:'makul', 5:'rekabet yok'})[v] || '';
+              return ({1:'çok zayıf', 2:'orta-zayıf', 3:'orta', 4:'makul', 5:'rekabet\nyok'})[v] || '';
             }
           },
           grid: { color: theme.grid, drawTicks: false }
