@@ -620,29 +620,40 @@
   var sans = "'Inter', sans-serif";
 
   var routes = [
-    { n:'Almanya (harçsız)',   x:5, y:24.0, c:'green', dx:-10, ha:'right' },
-    { n:'Surrey Excellence',   x:4, y:5.0,  c:'green', dx:-10, ha:'right' },
-    { n:'Deutschlandstip.',    x:3, y:3.1,  c:'amber', dx:10,  ha:'left', dy:10 },
-    { n:'NL Scholarship',      x:3, y:4.25, c:'amber', dx:10,  ha:'left', dy:-8 },
-    { n:'GREAT Türkiye',       x:2, y:12.5, c:'amber', dx:10,  ha:'left' },
-    { n:'DAAD',                x:1, y:10.1, c:'red',   dx:10,  ha:'left' },
-    { n:'Twente / TU Delft',   x:1, y:12.75,c:'red',   dx:10,  ha:'left' },
-    { n:'GOI-IES',             x:1, y:25.5, c:'red',   dx:10,  ha:'left' }
+    { n:'Almanya (harçsız)',   x:5, y:24.0, c:'green', side:'left'  },
+    { n:'Surrey Excellence',   x:4, y:5.0,  c:'green', side:'left'  },
+    { n:'Deutschlandstip.',    x:3, y:3.1,  c:'amber', side:'right', dy:16 },
+    { n:'NL Scholarship',      x:3, y:4.25, c:'amber', side:'right', dy:-14 },
+    { n:'GREAT Türkiye',       x:2, y:12.5, c:'amber', side:'right', dy:12 },
+    { n:'DAAD',                x:1, y:10.1, c:'red',   side:'right' },
+    { n:'Twente / TU Delft',   x:1, y:12.75,c:'red',   side:'right', dy:-13 },
+    { n:'GOI-IES',             x:1, y:25.5, c:'red',   side:'right' }
   ];
 
+  // Draws each route's name next to its point. Picks the side with room and
+  // clamps to the canvas so nothing gets cut off at narrow widths.
   var labelPlugin = {
     id: 'pointLabels',
     afterDatasetsDraw: function(chart){
       var ctx = chart.ctx;
       var meta = chart.getDatasetMeta(0);
+      var w = chart.width;
+      var fs = w < 430 ? 10 : 11;
+      var gap = 9;
       ctx.save();
-      ctx.font = '11px ' + mono;
+      ctx.font = fs + 'px ' + mono;
       ctx.fillStyle = theme.soft;
       ctx.textBaseline = 'middle';
+      ctx.textAlign = 'left';
       meta.data.forEach(function(pt, i){
         var r = routes[i];
-        ctx.textAlign = r.ha || 'left';
-        ctx.fillText(r.n, pt.x + (r.dx || 8), pt.y + (r.dy || 0));
+        var tw = ctx.measureText(r.n).width;
+        var x = r.side === 'left' ? pt.x - gap - tw : pt.x + gap;
+        // flip to the other side if the preferred one runs off the canvas
+        if (x + tw > w - 2) x = pt.x - gap - tw;
+        if (x < 2) x = pt.x + gap;
+        x = Math.max(2, Math.min(x, w - tw - 2));
+        ctx.fillText(r.n, x, pt.y + (r.dy || 0));
       });
       ctx.restore();
     }
