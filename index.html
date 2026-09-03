@@ -718,8 +718,10 @@
     id: 'pointLabels',
     afterDatasetsDraw: function(chart){
       var ctx = chart.ctx;
+      // Labels may use the full canvas width and top, but must stay clear of the
+      // two edges the axis tick labels occupy: left (£ values) and bottom (levels).
       var a = chart.chartArea;
-      var area = { left: a.left + 1, right: a.right - 1, top: a.top + 1, bottom: a.bottom - 1 };
+      var area = { left: a.left + 1, right: chart.width - 2, top: 2, bottom: a.bottom - 1 };
       var pts = chart.getDatasetMeta(0).data.map(function(p){ return { x: p.x, y: p.y }; });
       var names = routes.map(function(r){ return r.n; });
       var nums = routes.map(function(r, i){ return String(i + 1); });
